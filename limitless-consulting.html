@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Limitless Consulting — Caleb Lake</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --accent:#a78bfa;
+      --accent-glow:rgba(167,139,250,0.2);
+      --accent2:#38bdf8;
+      --bg:linear-gradient(135deg,#07060f 0%,#0f0b1e 60%,#08091a 100%);
+      --glass:rgba(255,255,255,0.05);
+      --border:rgba(255,255,255,0.09);
+      --txt:#fff;
+      --txt2:rgba(255,255,255,0.6);
+      --card-hover:rgba(255,255,255,0.08);
+    }
+    body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--txt);min-height:100vh;overflow-x:hidden}
+    .orb{position:fixed;border-radius:50%;filter:blur(100px);opacity:0.15;pointer-events:none;z-index:0}
+    .o1{width:500px;height:500px;background:#7c3aed;top:-160px;right:-120px;animation:fl 19s infinite ease-in-out}
+    .o2{width:380px;height:380px;background:#38bdf8;bottom:-100px;left:-80px;animation:fl 25s infinite ease-in-out reverse}
+    @keyframes fl{0%,100%{transform:translate(0,0)}50%{transform:translate(50px,-50px)}}
+    .topbar{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;background:rgba(7,6,15,0.75);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+    .back-btn{display:inline-flex;align-items:center;gap:0.5rem;color:var(--txt2);text-decoration:none;font-size:0.88rem;font-weight:500;transition:color 0.2s}
+    .back-btn:hover{color:var(--txt)}
+    .page-label{font-size:0.78rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);font-weight:600}
+    .hero{padding:7rem 2rem 4rem;max-width:1100px;margin:0 auto;position:relative;z-index:1}
+    .eyebrow{font-size:0.78rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:1rem;display:flex;align-items:center;gap:0.6rem}
+    .eyebrow::before{content:'';width:28px;height:2px;background:var(--accent);border-radius:2px}
+    h1{font-size:clamp(2.2rem,5vw,4.2rem);font-weight:700;line-height:1.1;margin-bottom:1rem;animation:fadeUp 0.6s ease 0.1s both}
+    .hero-sub{font-size:1.05rem;color:var(--txt2);line-height:1.7;max-width:620px;animation:fadeUp 0.6s ease 0.25s both}
+    .tags-row{display:flex;flex-wrap:wrap;gap:0.6rem;margin-top:1.5rem;animation:fadeUp 0.6s ease 0.35s both}
+    .tag{padding:0.35rem 0.9rem;background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.28);border-radius:100px;font-size:0.78rem;font-weight:500;color:var(--accent)}
+    .content{max-width:1100px;margin:0 auto;padding:2rem 2rem 6rem;position:relative;z-index:1}
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:1.75rem;margin-bottom:2rem}
+    @media(max-width:768px){.two-col{grid-template-columns:1fr}}
+    .three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:2rem}
+    @media(max-width:768px){.three-col{grid-template-columns:1fr}}
+    .card{background:var(--glass);backdrop-filter:blur(20px);border:1px solid var(--border);border-radius:18px;padding:1.75rem;transition:transform 0.3s,background 0.3s;position:relative;overflow:hidden}
+    .card::before{content:'';position:absolute;inset:0 0 auto 0;height:1px;background:linear-gradient(90deg,transparent,rgba(167,139,250,0.2),transparent)}
+    .card:hover{background:var(--card-hover);transform:translateY(-4px)}
+    .card-label{font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:0.75rem}
+    .card-title{font-size:1.15rem;font-weight:600;color:var(--txt);margin-bottom:0.5rem}
+    .card-body{color:var(--txt2);line-height:1.8;font-size:0.92rem}
+    .card-body ul{padding-left:1.2rem;margin-top:0.5rem}
+    .card-body li{margin-bottom:0.55rem}
+    .section-title{font-size:1.75rem;font-weight:700;color:var(--txt);margin-bottom:1.5rem;margin-top:3rem;padding-bottom:0.6rem;border-bottom:1px solid var(--border)}
+    /* Pillars */
+    .pillar-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.25rem;margin-bottom:2rem}
+    .pillar{background:linear-gradient(135deg,rgba(167,139,250,0.1),rgba(56,189,248,0.06));border:1px solid rgba(167,139,250,0.2);border-radius:16px;padding:1.5rem;text-align:center}
+    .pillar-icon{font-size:2rem;margin-bottom:0.75rem;display:block}
+    .pillar-title{font-size:0.95rem;font-weight:600;color:var(--txt);margin-bottom:0.4rem}
+    .pillar-desc{font-size:0.82rem;color:var(--txt2);line-height:1.6}
+    .cta-row{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border)}
+    .btn{display:inline-flex;align-items:center;gap:0.5rem;padding:0.8rem 1.8rem;border-radius:100px;font-weight:600;font-size:0.9rem;font-family:'Outfit',sans-serif;text-decoration:none;transition:all 0.25s ease;border:none;cursor:pointer}
+    .btn-acc{background:var(--accent);color:#000;box-shadow:0 6px 20px var(--accent-glow)}
+    .btn-acc:hover{transform:translateY(-2px);box-shadow:0 12px 28px var(--accent-glow)}
+    .btn-ghost{background:var(--glass);color:var(--txt);border:1px solid var(--border)}
+    .btn-ghost:hover{background:var(--card-hover);transform:translateY(-2px)}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+    .reveal{opacity:0;transform:translateY(20px);transition:opacity 0.5s ease,transform 0.5s ease}
+    .reveal.vis{opacity:1;transform:translateY(0)}
+  </style>
+</head>
+<body>
+  <div class="orb o1"></div>
+  <div class="orb o2"></div>
+
+  <div class="topbar">
+    <a href="index.html" class="back-btn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+      Back to Portfolio
+    </a>
+    <span class="page-label">Limitless Consulting</span>
+  </div>
+
+  <div class="hero">
+    <p class="eyebrow">Director of Content · May 2025–Present</p>
+    <h1>Limitless<br>Consulting</h1>
+    <p class="hero-sub">Leading brand identity and content strategy for MSU's student consulting organization — building a cohesive visual language, a multimedia content library, and a mentorship culture that scales.</p>
+    <div class="tags-row">
+      <span class="tag">Brand Strategy</span>
+      <span class="tag">Video Production</span>
+      <span class="tag">Graphic Design</span>
+      <span class="tag">Mentorship</span>
+      <span class="tag">Content Leadership</span>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <h2 class="section-title reveal">The Role</h2>
+    <div class="two-col">
+      <div class="card reveal">
+        <p class="card-label">Director of Content</p>
+        <p class="card-body">As Director of Content, I own the entire creative output of Limitless Consulting — from defining the brand's visual and verbal identity to producing the videos, graphics, and social content that represent the organization externally and internally.</p>
+      </div>
+      <div class="card reveal">
+        <p class="card-label">The Challenge</p>
+        <p class="card-body">Student organizations often suffer from inconsistent branding — different aesthetics every semester, no defined voice, content that doesn't reflect the quality of the work being done. The goal was to professionalize the brand without losing the approachability that makes a club feel welcoming.</p>
+      </div>
+    </div>
+
+    <h2 class="section-title reveal">Brand Pillars</h2>
+    <div class="pillar-grid reveal">
+      <div class="pillar">
+        <span class="pillar-icon">🎯</span>
+        <p class="pillar-title">Clarity</p>
+        <p class="pillar-desc">Every piece of content communicates a single clear message — no clutter, no ambiguity.</p>
+      </div>
+      <div class="pillar">
+        <span class="pillar-icon">🤝</span>
+        <p class="pillar-title">Approachability</p>
+        <p class="pillar-desc">Professional without being corporate — a tone that welcomes students at every level.</p>
+      </div>
+      <div class="pillar">
+        <span class="pillar-icon">✨</span>
+        <p class="pillar-title">Quality</p>
+        <p class="pillar-desc">Polished production values that reflect the caliber of consulting work the club produces.</p>
+      </div>
+      <div class="pillar">
+        <span class="pillar-icon">🔄</span>
+        <p class="pillar-title">Consistency</p>
+        <p class="pillar-desc">A unified visual system across all platforms so the brand is immediately recognizable.</p>
+      </div>
+    </div>
+
+    <h2 class="section-title reveal">What I Do</h2>
+    <div class="three-col">
+      <div class="card reveal">
+        <p class="card-label">Brand Identity</p>
+        <p class="card-body">Defined and maintain the organization's visual language — color systems, typography, graphic templates — ensuring every digital touchpoint looks and feels like Limitless.</p>
+      </div>
+      <div class="card reveal">
+        <p class="card-label">Multimedia Content</p>
+        <p class="card-body">Produce promotional videos, meeting recap reels, and event coverage using Adobe Premiere and After Effects — creating a growing content library that tells the organization's story over time.</p>
+      </div>
+      <div class="card reveal">
+        <p class="card-label">Mentorship</p>
+        <p class="card-body">Provide one-on-one coaching to members on marketing fundamentals and consulting strategy — helping newer members develop skills they can apply both in the club and in professional settings.</p>
+      </div>
+    </div>
+
+    <div class="card reveal" style="margin-bottom:2rem">
+      <p class="card-label">Leadership & Strategy</p>
+      <p class="card-title">Aligning content with organizational goals</p>
+      <p class="card-body">Work directly with the executive team to ensure content strategy ladders up to the club's broader objectives — whether that's recruiting new members, promoting client work, or building the organization's reputation on campus. Content isn't produced in a vacuum; every piece serves a clear strategic purpose.</p>
+    </div>
+
+    <h2 class="section-title reveal">Skills Applied</h2>
+    <div class="two-col">
+      <div class="card reveal">
+        <p class="card-label">Creative</p>
+        <p class="card-body">Adobe Creative Cloud (Premiere, After Effects, Illustrator, Photoshop), graphic design systems, video production and editing, motion graphics fundamentals.</p>
+      </div>
+      <div class="card reveal">
+        <p class="card-label">Strategic</p>
+        <p class="card-body">Brand architecture, content calendar planning, audience analysis, cross-platform consistency, stakeholder communication, mentorship and leadership development.</p>
+      </div>
+    </div>
+
+    <div class="cta-row reveal">
+      <a href="index.html" class="btn btn-ghost">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        Back to Portfolio
+      </a>
+      <a href="mailto:calebmlake16@gmail.com?subject=Inquiry about Limitless Consulting work" class="btn btn-acc">Get In Touch</a>
+    </div>
+  </div>
+
+  <script>
+    const ro=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('vis');ro.unobserve(x.target)}})},{threshold:0.1});
+    document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+  </script>
+</body>
+</html>

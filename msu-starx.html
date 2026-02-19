@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MSU STARX — Caleb Lake</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --accent:#38bdf8;
+      --accent-glow:rgba(56,189,248,0.2);
+      --accent2:#818cf8;
+      --bg:linear-gradient(135deg,#030712 0%,#0a1628 60%,#050d1a 100%);
+      --glass:rgba(255,255,255,0.05);
+      --border:rgba(255,255,255,0.09);
+      --txt:#fff;
+      --txt2:rgba(255,255,255,0.6);
+      --card-hover:rgba(255,255,255,0.08);
+    }
+    body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--txt);min-height:100vh;overflow-x:hidden}
+    .orb{position:fixed;border-radius:50%;filter:blur(100px);opacity:0.14;pointer-events:none;z-index:0}
+    .o1{width:500px;height:500px;background:#0ea5e9;top:-150px;right:-100px;animation:fl 20s infinite ease-in-out}
+    .o2{width:380px;height:380px;background:#6366f1;bottom:-100px;left:-80px;animation:fl 26s infinite ease-in-out reverse}
+    @keyframes fl{0%,100%{transform:translate(0,0)}50%{transform:translate(50px,-50px)}}
+    .topbar{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;background:rgba(3,7,18,0.78);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+    .back-btn{display:inline-flex;align-items:center;gap:0.5rem;color:var(--txt2);text-decoration:none;font-size:0.88rem;font-weight:500;transition:color 0.2s}
+    .back-btn:hover{color:var(--txt)}
+    .page-label{font-size:0.78rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);font-weight:600}
+    .hero{padding:7rem 2rem 4rem;max-width:1100px;margin:0 auto;position:relative;z-index:1}
+    .eyebrow{font-size:0.78rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:1rem;display:flex;align-items:center;gap:0.6rem}
+    .eyebrow::before{content:'';width:28px;height:2px;background:var(--accent);border-radius:2px}
+    h1{font-size:clamp(2.5rem,6vw,5rem);font-weight:700;line-height:1.05;margin-bottom:1rem;animation:fadeUp 0.6s ease 0.1s both}
+    .hero-sub{font-size:1.05rem;color:var(--txt2);line-height:1.7;max-width:620px;animation:fadeUp 0.6s ease 0.25s both}
+    .tags-row{display:flex;flex-wrap:wrap;gap:0.6rem;margin-top:1.5rem;animation:fadeUp 0.6s ease 0.35s both}
+    .tag{padding:0.35rem 0.9rem;background:rgba(56,189,248,0.1);border:1px solid rgba(56,189,248,0.28);border-radius:100px;font-size:0.78rem;font-weight:500;color:var(--accent)}
+    .content{max-width:1100px;margin:0 auto;padding:2rem 2rem 6rem;position:relative;z-index:1}
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:1.75rem;margin-bottom:2rem}
+    @media(max-width:768px){.two-col{grid-template-columns:1fr}}
+    .three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:2rem}
+    @media(max-width:768px){.three-col{grid-template-columns:1fr}}
+    .card{background:var(--glass);backdrop-filter:blur(20px);border:1px solid var(--border);border-radius:18px;padding:1.75rem;transition:transform 0.3s,background 0.3s;position:relative;overflow:hidden}
+    .card::before{content:'';position:absolute;inset:0 0 auto 0;height:1px;background:linear-gradient(90deg,transparent,rgba(56,189,248,0.2),transparent)}
+    .card:hover{background:var(--card-hover);transform:translateY(-4px)}
+    .card-label{font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:0.75rem}
+    .card-title{font-size:1.15rem;font-weight:600;color:var(--txt);margin-bottom:0.5rem}
+    .card-body{color:var(--txt2);line-height:1.8;font-size:0.92rem}
+    .card-body ul{padding-left:1.2rem;margin-top:0.5rem}
+    .card-body li{margin-bottom:0.55rem}
+    .section-title{font-size:1.75rem;font-weight:700;color:var(--txt);margin-bottom:1.5rem;margin-top:3rem;padding-bottom:0.6rem;border-bottom:1px solid var(--border)}
+    /* Tech badge */
+    .tech-badge{display:inline-flex;align-items:center;gap:0.4rem;padding:0.3rem 0.75rem;background:rgba(56,189,248,0.08);border:1px solid rgba(56,189,248,0.2);border-radius:6px;font-size:0.78rem;font-weight:500;color:var(--accent);margin:0.2rem}
+    .challenge-card{background:linear-gradient(135deg,rgba(56,189,248,0.08),rgba(99,102,241,0.05));border:1px solid rgba(56,189,248,0.18);border-radius:18px;padding:2rem;margin-bottom:2rem}
+    /* Approach grid */
+    .approach-item{display:flex;gap:1rem;padding:1.25rem 0;border-bottom:1px solid var(--border)}
+    .approach-item:last-child{border-bottom:none}
+    .a-icon{font-size:1.5rem;flex-shrink:0;width:40px;text-align:center;margin-top:0.1rem}
+    .a-head{font-size:0.95rem;font-weight:600;color:var(--txt);margin-bottom:0.3rem}
+    .a-body{font-size:0.87rem;color:var(--txt2);line-height:1.65}
+    .cta-row{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border)}
+    .btn{display:inline-flex;align-items:center;gap:0.5rem;padding:0.8rem 1.8rem;border-radius:100px;font-weight:600;font-size:0.9rem;font-family:'Outfit',sans-serif;text-decoration:none;transition:all 0.25s ease;border:none;cursor:pointer}
+    .btn-acc{background:var(--accent);color:#000;box-shadow:0 6px 20px var(--accent-glow)}
+    .btn-acc:hover{transform:translateY(-2px);box-shadow:0 12px 28px var(--accent-glow)}
+    .btn-ghost{background:var(--glass);color:var(--txt);border:1px solid var(--border)}
+    .btn-ghost:hover{background:var(--card-hover);transform:translateY(-2px)}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+    .reveal{opacity:0;transform:translateY(20px);transition:opacity 0.5s ease,transform 0.5s ease}
+    .reveal.vis{opacity:1;transform:translateY(0)}
+  </style>
+</head>
+<body>
+  <div class="orb o1"></div>
+  <div class="orb o2"></div>
+
+  <div class="topbar">
+    <a href="index.html" class="back-btn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+      Back to Portfolio
+    </a>
+    <span class="page-label">MSU STARX</span>
+  </div>
+
+  <div class="hero">
+    <p class="eyebrow">Social Media Manager · MSU Student Organization</p>
+    <h1>MSU STARX</h1>
+    <p class="hero-sub">Social media manager for Michigan State's robotic exoskeleton engineering team — translating complex biomechanics research into a compelling public narrative that grows awareness and community around the program.</p>
+    <div class="tags-row">
+      <span class="tag">Technical Marketing</span>
+      <span class="tag">Social Media</span>
+      <span class="tag">Science Communication</span>
+      <span class="tag">Brand Building</span>
+      <span class="tag">Storytelling</span>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <h2 class="section-title reveal">The Program</h2>
+    <div class="challenge-card reveal">
+      <p class="card-label">About STARX</p>
+      <p class="card-title">Engineering a robotic exoskeleton at MSU</p>
+      <p style="color:var(--txt2);line-height:1.8;font-size:0.93rem;margin-bottom:1rem">MSU STARX is a student-led engineering team designing and building a wearable robotic exoskeleton — assistive technology with real-world applications for people with mobility impairments. The team combines mechanical engineering, biomedical research, and software development across a large interdisciplinary group of students.</p>
+      <p style="font-size:0.82rem;color:var(--txt2)">Technology involved:</p>
+      <div style="margin-top:0.6rem">
+        <span class="tech-badge">Robotic Exoskeleton</span>
+        <span class="tech-badge">Biomechanics</span>
+        <span class="tech-badge">Assistive Technology</span>
+        <span class="tech-badge">Embedded Systems</span>
+        <span class="tech-badge">CAD Design</span>
+      </div>
+    </div>
+
+    <h2 class="section-title reveal">The Challenge</h2>
+    <div class="two-col">
+      <div class="card reveal">
+        <p class="card-label">The Problem</p>
+        <p class="card-body">Engineering teams rarely communicate what they're building in a way that resonates with a general audience. STARX was doing groundbreaking work, but their social presence didn't reflect the significance — the content was inconsistent, overly technical, and wasn't growing the audience the program deserved.</p>
+      </div>
+      <div class="card reveal">
+        <p class="card-label">The Opportunity</p>
+        <p class="card-body">Deeply technical subjects become compelling when you tell the human story behind them. The opportunity was to position STARX not just as an engineering club, but as a team of students solving real problems for real people — making the technology feel tangible and the mission feel urgent.</p>
+      </div>
+    </div>
+
+    <h2 class="section-title reveal">My Approach</h2>
+    <div class="card reveal">
+      <div class="approach-item">
+        <div class="a-icon">🎯</div>
+        <div><p class="a-head">Lead with purpose, not specs</p><p class="a-body">Every post anchored around who the technology helps — patients, caregivers, people with mobility challenges — before explaining how it works. Purpose creates emotional connection; specs create confusion.</p></div>
+      </div>
+      <div class="approach-item">
+        <div class="a-icon">👥</div>
+        <div><p class="a-head">Humanize the team</p><p class="a-body">Featured the individual students building the exoskeleton — their motivations, their backgrounds, their moments of breakthrough and frustration. People follow people, not projects.</p></div>
+      </div>
+      <div class="approach-item">
+        <div class="a-icon">🔬</div>
+        <div><p class="a-head">Make complexity accessible</p><p class="a-body">Developed a content framework for translating engineering concepts into plain language — using analogies, visuals, and progressive disclosure so content educated without alienating a non-technical audience.</p></div>
+      </div>
+      <div class="approach-item">
+        <div class="a-icon">📅</div>
+        <div><p class="a-body-head">Build a rhythm</p><p class="a-body">Established a consistent posting cadence with recurring content formats — team spotlights, build updates, milestone celebrations — so followers knew what to expect and had reasons to stay engaged.</p></div>
+      </div>
+    </div>
+
+    <h2 class="section-title reveal">Skills Applied</h2>
+    <div class="three-col">
+      <div class="card reveal">
+        <p class="card-label">Communication</p>
+        <p class="card-body">Science and technical communication — distilling complex engineering concepts into clear, engaging social content for a general audience.</p>
+      </div>
+      <div class="card reveal">
+        <p class="card-label">Strategy</p>
+        <p class="card-body">Content calendar development, audience growth strategy, platform-specific formatting for Instagram, LinkedIn, and Twitter/X.</p>
+      </div>
+      <div class="card reveal">
+        <p class="card-label">Design</p>
+        <p class="card-body">Graphic asset creation for posts and stories using Adobe Illustrator and Canva — maintaining visual consistency with STARX's brand identity.</p>
+      </div>
+    </div>
+
+    <div class="cta-row reveal">
+      <a href="index.html" class="btn btn-ghost">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        Back to Portfolio
+      </a>
+      <a href="mailto:calebmlake16@gmail.com?subject=Inquiry about MSU STARX work" class="btn btn-acc">Get In Touch</a>
+    </div>
+  </div>
+
+  <script>
+    const ro=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('vis');ro.unobserve(x.target)}})},{threshold:0.1});
+    document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+  </script>
+</body>
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Creative Editing — Caleb Lake</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --accent:#d946ef;
+      --accent-glow:rgba(217,70,239,0.2);
+      --accent2:#f59e0b;
+      --bg:linear-gradient(135deg,#0a0510 0%,#140b20 60%,#0d0714 100%);
+      --glass:rgba(255,255,255,0.05);
+      --border:rgba(255,255,255,0.09);
+      --txt:#fff;
+      --txt2:rgba(255,255,255,0.6);
+      --card-hover:rgba(255,255,255,0.08);
+    }
+    body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--txt);min-height:100vh;overflow-x:hidden}
+    .orb{position:fixed;border-radius:50%;filter:blur(100px);opacity:0.15;pointer-events:none;z-index:0}
+    .o1{width:500px;height:500px;background:#9333ea;top:-160px;right:-100px;animation:fl 19s infinite ease-in-out}
+    .o2{width:380px;height:380px;background:#ec4899;bottom:-100px;left:-80px;animation:fl 25s infinite ease-in-out reverse}
+    @keyframes fl{0%,100%{transform:translate(0,0)}50%{transform:translate(55px,-55px)}}
+    .topbar{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;background:rgba(10,5,16,0.75);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+    .back-btn{display:inline-flex;align-items:center;gap:0.5rem;color:var(--txt2);text-decoration:none;font-size:0.88rem;font-weight:500;transition:color 0.2s}
+    .back-btn:hover{color:var(--txt)}
+    .page-label{font-size:0.78rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);font-weight:600}
+    .hero{padding:7rem 2rem 4rem;max-width:1100px;margin:0 auto;position:relative;z-index:1}
+    .eyebrow{font-size:0.78rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:1rem;display:flex;align-items:center;gap:0.6rem}
+    .eyebrow::before{content:'';width:28px;height:2px;background:var(--accent);border-radius:2px}
+    h1{font-size:clamp(2.5rem,6vw,5rem);font-weight:700;line-height:1.05;margin-bottom:1rem;animation:fadeUp 0.6s ease 0.1s both}
+    .hero-sub{font-size:1.05rem;color:var(--txt2);line-height:1.7;max-width:620px;animation:fadeUp 0.6s ease 0.25s both}
+    .tags-row{display:flex;flex-wrap:wrap;gap:0.6rem;margin-top:1.5rem;animation:fadeUp 0.6s ease 0.35s both}
+    .tag{padding:0.35rem 0.9rem;background:rgba(217,70,239,0.1);border:1px solid rgba(217,70,239,0.28);border-radius:100px;font-size:0.78rem;font-weight:500;color:var(--accent)}
+    .content{max-width:1100px;margin:0 auto;padding:2rem 2rem 6rem;position:relative;z-index:1}
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:1.75rem;margin-bottom:2rem}
+    @media(max-width:768px){.two-col{grid-template-columns:1fr}}
+    .three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:2rem}
+    @media(max-width:768px){.three-col{grid-template-columns:1fr}}
+    .card{background:var(--glass);backdrop-filter:blur(20px);border:1px solid var(--border);border-radius:18px;padding:1.75rem;transition:transform 0.3s,background 0.3s;position:relative;overflow:hidden}
+    .card::before{content:'';position:absolute;inset:0 0 auto 0;height:1px;background:linear-gradient(90deg,transparent,rgba(217,70,239,0.2),transparent)}
+    .card:hover{background:var(--card-hover);transform:translateY(-4px)}
+    .card-label{font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:0.75rem}
+    .card-title{font-size:1.15rem;font-weight:600;color:var(--txt);margin-bottom:0.5rem}
+    .card-body{color:var(--txt2);line-height:1.8;font-size:0.92rem}
+    .card-body ul{padding-left:1.2rem;margin-top:0.5rem}
+    .card-body li{margin-bottom:0.55rem}
+    .section-title{font-size:1.75rem;font-weight:700;color:var(--txt);margin-bottom:1.5rem;margin-top:3rem;padding-bottom:0.6rem;border-bottom:1px solid var(--border)}
+    /* Work type cards */
+    .work-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.25rem;margin-bottom:2rem}
+    .work-type{border-radius:18px;padding:1.75rem;border:1px solid var(--border);background:var(--glass);position:relative;overflow:hidden;transition:transform 0.3s,background 0.3s}
+    .work-type:hover{background:var(--card-hover);transform:translateY(-4px)}
+    .work-type-icon{font-size:2.2rem;margin-bottom:1rem;display:block}
+    .work-type-title{font-size:1rem;font-weight:600;color:var(--txt);margin-bottom:0.5rem}
+    .work-type-desc{font-size:0.85rem;color:var(--txt2);line-height:1.65}
+    /* Tool badges */
+    .tool-badge{display:inline-flex;align-items:center;gap:0.4rem;padding:0.4rem 1rem;background:rgba(217,70,239,0.08);border:1px solid rgba(217,70,239,0.2);border-radius:8px;font-size:0.82rem;font-weight:500;color:var(--txt2);margin:0.25rem}
+    /* Aesthetic strip */
+    .aesthetic-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:0.75rem;margin-bottom:2rem}
+    @media(max-width:600px){.aesthetic-strip{grid-template-columns:repeat(3,1fr)}}
+    .ae-swatch{height:80px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase}
+    .cta-row{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border)}
+    .btn{display:inline-flex;align-items:center;gap:0.5rem;padding:0.8rem 1.8rem;border-radius:100px;font-weight:600;font-size:0.9rem;font-family:'Outfit',sans-serif;text-decoration:none;transition:all 0.25s ease;border:none;cursor:pointer}
+    .btn-acc{background:var(--accent);color:#fff;box-shadow:0 6px 20px var(--accent-glow)}
+    .btn-acc:hover{transform:translateY(-2px);box-shadow:0 12px 28px var(--accent-glow)}
+    .btn-ghost{background:var(--glass);color:var(--txt);border:1px solid var(--border)}
+    .btn-ghost:hover{background:var(--card-hover);transform:translateY(-2px)}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+    .reveal{opacity:0;transform:translateY(20px);transition:opacity 0.5s ease,transform 0.5s ease}
+    .reveal.vis{opacity:1;transform:translateY(0)}
+  </style>
+</head>
+<body>
+  <div class="orb o1"></div>
+  <div class="orb o2"></div>
+
+  <div class="topbar">
+    <a href="index.html" class="back-btn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+      Back to Portfolio
+    </a>
+    <span class="page-label">Creative Editing</span>
+  </div>
+
+  <div class="hero">
+    <p class="eyebrow">Design, Video & Motion</p>
+    <h1>Creative<br>Editing</h1>
+    <p class="hero-sub">A collection of graphic design, video editing, and multimedia work spanning personal projects, academic exploration, and real-world applications — demonstrating range, visual instinct, and a commitment to craft.</p>
+    <div class="tags-row">
+      <span class="tag">Adobe CC</span>
+      <span class="tag">Graphic Design</span>
+      <span class="tag">Video Editing</span>
+      <span class="tag">Motion Graphics</span>
+      <span class="tag">Visual Storytelling</span>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <h2 class="section-title reveal">Areas of Work</h2>
+    <div class="work-grid reveal">
+      <div class="work-type">
+        <span class="work-type-icon">🎞️</span>
+        <p class="work-type-title">Video Editing</p>
+        <p class="work-type-desc">Short-form and long-form cuts for social media, promotional content, and broadcast — pacing, color grading, and sound design handled in-house.</p>
+      </div>
+      <div class="work-type">
+        <span class="work-type-icon">🖼️</span>
+        <p class="work-type-title">Graphic Design</p>
+        <p class="work-type-desc">Social media graphics, event posters, presentation decks, and brand assets — built with an eye for hierarchy, contrast, and visual balance.</p>
+      </div>
+      <div class="work-type">
+        <span class="work-type-icon">✨</span>
+        <p class="work-type-title">Motion Graphics</p>
+        <p class="work-type-desc">Animated titles, transitions, and lower thirds using Adobe After Effects — adding polish and energy to video content.</p>
+      </div>
+      <div class="work-type">
+        <span class="work-type-icon">📸</span>
+        <p class="work-type-title">Photo Editing</p>
+        <p class="work-type-desc">Color correction, compositing, and retouching in Adobe Lightroom and Photoshop — from event photography to social-ready portrait work.</p>
+      </div>
+    </div>
+
+    <h2 class="section-title reveal">Philosophy</h2>
+    <div class="card reveal" style="margin-bottom:1.75rem">
+      <p class="card-label">How I think about creative work</p>
+      <p class="card-title">Design should feel inevitable</p>
+      <p class="card-body">The best creative work doesn't announce itself — it just feels right. I approach every project by asking what emotion or action it needs to produce, then work backward to the visual decisions that get there. Color, typography, pacing, and composition are all tools in service of that goal. Style without purpose is just decoration.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card reveal">
+        <p class="card-label">Influences</p>
+        <p class="card-body">I'm drawn to work that's clean but not cold — design that breathes without being sparse, and motion that has weight without being slow. Influences include editorial design, film title sequences, and the visual language of digital-native brands.</p>
+      </div>
+      <div class="card reveal">
+        <p class="card-label">Process</p>
+        <p class="card-body">I start every project with a reference pull — building a moodboard that sets the visual direction before touching software. It prevents the blank-canvas paralysis and ensures every design decision is intentional rather than accidental.</p>
+      </div>
+    </div>
+
+    <h2 class="section-title reveal">Tools</h2>
+    <div class="card reveal">
+      <p class="card-label" style="margin-bottom:1rem">Adobe Creative Cloud Suite</p>
+      <div>
+        <span class="tool-badge">Premiere Pro</span>
+        <span class="tool-badge">After Effects</span>
+        <span class="tool-badge">Illustrator</span>
+        <span class="tool-badge">Photoshop</span>
+        <span class="tool-badge">Lightroom</span>
+        <span class="tool-badge">InDesign</span>
+        <span class="tool-badge">Audition</span>
+      </div>
+      <p class="card-label" style="margin-bottom:1rem;margin-top:1.25rem">Additional</p>
+      <div>
+        <span class="tool-badge">Canva</span>
+        <span class="tool-badge">Figma</span>
+        <span class="tool-badge">CapCut</span>
+        <span class="tool-badge">DaVinci Resolve</span>
+      </div>
+    </div>
+
+    <h2 class="section-title reveal">Applied Across Projects</h2>
+    <div class="three-col">
+      <div class="card reveal">
+        <p class="card-label">CSI Fridays</p>
+        <p class="card-body">Weekly video production including editing, motion graphics, color grading, and audio mixing for a live broadcast to 400+ students.</p>
+      </div>
+      <div class="card reveal">
+        <p class="card-label">Limitless Consulting</p>
+        <p class="card-body">Full brand identity system, promotional videos, and social graphics — building a visual language from scratch and maintaining it across platforms.</p>
+      </div>
+      <div class="card reveal">
+        <p class="card-label">MSU Vet Med</p>
+        <p class="card-body">Graphic assets for social campaigns that generated 2,000+ likes — combining clean design with subject matter that required sensitivity and precision.</p>
+      </div>
+    </div>
+
+    <div class="cta-row reveal">
+      <a href="index.html" class="btn btn-ghost">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        Back to Portfolio
+      </a>
+      <a href="mailto:calebmlake16@gmail.com?subject=Inquiry about creative work" class="btn btn-acc">Work Together</a>
+    </div>
+  </div>
+
+  <script>
+    const ro=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('vis');ro.unobserve(x.target)}})},{threshold:0.1});
+    document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+  </script>
+</body>
+</html>

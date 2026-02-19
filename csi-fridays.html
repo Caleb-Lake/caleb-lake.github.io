@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSI Fridays — Caleb Lake</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --accent:#ff6b35;
+      --accent-glow:rgba(255,107,53,0.22);
+      --bg:linear-gradient(135deg,#0f0805 0%,#1a0e08 60%,#100a05 100%);
+      --glass:rgba(255,255,255,0.05);
+      --border:rgba(255,255,255,0.09);
+      --txt:#fff;
+      --txt2:rgba(255,255,255,0.6);
+      --card-hover:rgba(255,255,255,0.08);
+    }
+    body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--txt);min-height:100vh;overflow-x:hidden}
+    .orb{position:fixed;border-radius:50%;filter:blur(100px);opacity:0.15;pointer-events:none;z-index:0}
+    .o1{width:480px;height:480px;background:#c0392b;top:-150px;right:-100px;animation:fl 21s infinite ease-in-out}
+    .o2{width:360px;height:360px;background:#ff6b35;bottom:-100px;left:-80px;animation:fl 27s infinite ease-in-out reverse}
+    @keyframes fl{0%,100%{transform:translate(0,0)}50%{transform:translate(50px,-50px)}}
+    .topbar{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;background:rgba(15,8,5,0.75);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+    .back-btn{display:inline-flex;align-items:center;gap:0.5rem;color:var(--txt2);text-decoration:none;font-size:0.88rem;font-weight:500;transition:color 0.2s}
+    .back-btn:hover{color:var(--txt)}
+    .page-label{font-size:0.78rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);font-weight:600}
+    .hero{padding:7rem 2rem 4rem;max-width:1100px;margin:0 auto;position:relative;z-index:1}
+    .eyebrow{font-size:0.78rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:1rem;display:flex;align-items:center;gap:0.6rem}
+    .eyebrow::before{content:'';width:28px;height:2px;background:var(--accent);border-radius:2px}
+    h1{font-size:clamp(2.5rem,6vw,5rem);font-weight:700;line-height:1.05;margin-bottom:1rem;animation:fadeUp 0.6s ease 0.1s both}
+    .hero-sub{font-size:1.05rem;color:var(--txt2);line-height:1.7;max-width:620px;animation:fadeUp 0.6s ease 0.25s both}
+    .tags-row{display:flex;flex-wrap:wrap;gap:0.6rem;margin-top:1.5rem;animation:fadeUp 0.6s ease 0.35s both}
+    .tag{padding:0.35rem 0.9rem;background:rgba(255,107,53,0.1);border:1px solid rgba(255,107,53,0.28);border-radius:100px;font-size:0.78rem;font-weight:500;color:var(--accent)}
+    .content{max-width:1100px;margin:0 auto;padding:2rem 2rem 6rem;position:relative;z-index:1}
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:1.75rem;margin-bottom:2rem}
+    @media(max-width:768px){.two-col{grid-template-columns:1fr}}
+    .three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:2rem}
+    @media(max-width:768px){.three-col{grid-template-columns:1fr}}
+    .card{background:var(--glass);backdrop-filter:blur(20px);border:1px solid var(--border);border-radius:18px;padding:1.75rem;transition:transform 0.3s,background 0.3s;position:relative;overflow:hidden}
+    .card::before{content:'';position:absolute;inset:0 0 auto 0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,107,53,0.2),transparent)}
+    .card:hover{background:var(--card-hover);transform:translateY(-4px)}
+    .card-label{font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:0.75rem}
+    .card-title{font-size:1.15rem;font-weight:600;color:var(--txt);margin-bottom:0.5rem}
+    .card-body{color:var(--txt2);line-height:1.8;font-size:0.92rem}
+    .card-body ul{padding-left:1.2rem;margin-top:0.5rem}
+    .card-body li{margin-bottom:0.55rem}
+    .stat-big{font-size:2.6rem;font-weight:700;color:var(--accent);line-height:1}
+    .stat-desc{font-size:0.85rem;color:var(--txt2);margin-top:0.35rem}
+    .section-title{font-size:1.75rem;font-weight:700;color:var(--txt);margin-bottom:1.5rem;margin-top:3rem;padding-bottom:0.6rem;border-bottom:1px solid var(--border)}
+    /* Film strip accent */
+    .film-hero{background:linear-gradient(135deg,rgba(255,107,53,0.12),rgba(192,57,43,0.06));border:1px solid rgba(255,107,53,0.2);border-radius:18px;padding:2rem;margin-bottom:2rem;display:grid;grid-template-columns:auto 1fr;gap:2rem;align-items:center}
+    @media(max-width:600px){.film-hero{grid-template-columns:1fr}}
+    .film-icon{font-size:4rem;opacity:0.85}
+    .process-step{display:flex;gap:1rem;align-items:flex-start;padding:1rem 0;border-bottom:1px solid var(--border)}
+    .process-step:last-child{border-bottom:none}
+    .step-num{width:32px;height:32px;border-radius:50%;background:rgba(255,107,53,0.15);border:1px solid rgba(255,107,53,0.3);display:flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:700;color:var(--accent);flex-shrink:0;margin-top:0.1rem}
+    .step-body h4{font-size:0.95rem;font-weight:600;color:var(--txt);margin-bottom:0.25rem}
+    .step-body p{font-size:0.87rem;color:var(--txt2);line-height:1.65}
+    .cta-row{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border)}
+    .btn{display:inline-flex;align-items:center;gap:0.5rem;padding:0.8rem 1.8rem;border-radius:100px;font-weight:600;font-size:0.9rem;font-family:'Outfit',sans-serif;text-decoration:none;transition:all 0.25s ease;border:none;cursor:pointer}
+    .btn-acc{background:var(--accent);color:#000;box-shadow:0 6px 20px var(--accent-glow)}
+    .btn-acc:hover{transform:translateY(-2px);box-shadow:0 12px 28px var(--accent-glow)}
+    .btn-ghost{background:var(--glass);color:var(--txt);border:1px solid var(--border)}
+    .btn-ghost:hover{background:var(--card-hover);transform:translateY(-2px)}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+    .reveal{opacity:0;transform:translateY(20px);transition:opacity 0.5s ease,transform 0.5s ease}
+    .reveal.vis{opacity:1;transform:translateY(0)}
+  </style>
+</head>
+<body>
+  <div class="orb o1"></div>
+  <div class="orb o2"></div>
+
+  <div class="topbar">
+    <a href="index.html" class="back-btn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+      Back to Portfolio
+    </a>
+    <span class="page-label">CSI Fridays</span>
+  </div>
+
+  <div class="hero">
+    <p class="eyebrow">Host & Producer · Sep 2021 – Jun 2022</p>
+    <h1>CSI Fridays</h1>
+    <p class="hero-sub">Co-created and hosted a weekly school broadcast watched by 400+ students every Friday — building an audience from scratch under real deadlines, week after week, for an entire year.</p>
+    <div class="tags-row">
+      <span class="tag">Video Production</span>
+      <span class="tag">Hosting</span>
+      <span class="tag">Storytelling</span>
+      <span class="tag">Team Leadership</span>
+      <span class="tag">Audience Growth</span>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- Stats -->
+    <h2 class="section-title reveal">By the Numbers</h2>
+    <div class="three-col">
+      <div class="card reveal" style="text-align:center"><div class="stat-big">400+</div><div class="stat-desc">Students watching every Friday</div></div>
+      <div class="card reveal" style="text-align:center"><div class="stat-big">10+</div><div class="stat-desc">Hours of original content per week</div></div>
+      <div class="card reveal" style="text-align:center"><div class="stat-big">36+</div><div class="stat-desc">Episodes produced over the school year</div></div>
+    </div>
+
+    <!-- What it was -->
+    <h2 class="section-title reveal">What It Was</h2>
+    <div class="film-hero reveal">
+      <div class="film-icon">🎬</div>
+      <div>
+        <p class="card-label">The Origin</p>
+        <p class="card-title">Built from nothing, for everyone</p>
+        <p style="color:var(--txt2);line-height:1.8;font-size:0.93rem">CSI Fridays was a student-produced weekly broadcast I co-created with a team of 5 Multi-Media students during my senior year of high school. The show premiered every Friday to the entire student body — highlighting school culture, student voices, and community moments in a polished video format. The goal was simple: make school feel like a place people were proud to belong to. That meant content that was funny when it needed to be, serious when it mattered, and always genuinely reflective of the people watching.</p>
+      </div>
+    </div>
+
+    <!-- Production process -->
+    <h2 class="section-title reveal">The Weekly Process</h2>
+    <div class="card reveal">
+      <div class="process-step">
+        <div class="step-num">1</div>
+        <div class="step-body"><h4>Monday — Ideation</h4><p>Team brainstorm on content themes for the week. Surveyed student feedback from the previous episode to shape what we covered next.</p></div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">2</div>
+        <div class="step-body"><h4>Tue–Wed — Filming</h4><p>Shot all footage across campus — interviews, event coverage, segments, and b-roll. I served as both on-camera host and behind-the-scenes producer depending on the scene.</p></div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">3</div>
+        <div class="step-body"><h4>Thursday — Edit & Polish</h4><p>Full editing pass in Adobe Premiere — cuts, color, audio mix, graphics, titles. Turnaround had to be tight; there was no slipping the Friday air date.</p></div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">4</div>
+        <div class="step-body"><h4>Friday — Premiere</h4><p>Broadcast to 400+ students during school. Collected live reactions and informal feedback to inform the following week's episode.</p></div>
+      </div>
+    </div>
+
+    <!-- What it built -->
+    <h2 class="section-title reveal">What It Built</h2>
+    <div class="two-col">
+      <div class="card reveal">
+        <p class="card-label">Creative Skills</p>
+        <p class="card-body">This was my real-world film school — writing scripts, directing segments, hosting on camera, and editing full episodes under pressure taught me more about storytelling than any class could. I learned to think visually and narratively at the same time.</p>
+      </div>
+      <div class="card reveal">
+        <p class="card-label">Professional Instincts</p>
+        <p class="card-body">Meeting a non-negotiable deadline every single week for an entire school year built discipline and composure I carry into every project. When things went wrong — and they did — you figured it out and delivered anyway.</p>
+      </div>
+    </div>
+
+    <div class="card reveal">
+      <p class="card-label">Legacy</p>
+      <p class="card-title">The show outlived my graduation</p>
+      <p class="card-body">After I graduated, the school continued running CSI Fridays — which I consider the best outcome possible. Building something that sustains itself without you is the real measure of whether you built it right. The systems, the culture, and the creative standard we established were strong enough that the next team could carry it forward.</p>
+    </div>
+
+    <div class="cta-row reveal">
+      <a href="index.html" class="btn btn-ghost">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        Back to Portfolio
+      </a>
+      <a href="mailto:calebmlake16@gmail.com?subject=Inquiry about CSI Fridays work" class="btn btn-acc">Get In Touch</a>
+    </div>
+  </div>
+
+  <script>
+    const ro=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('vis');ro.unobserve(x.target)}})},{threshold:0.1});
+    document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+  </script>
+</body>
+</html>

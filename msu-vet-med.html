@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MSU Veterinary Medicine — Caleb Lake</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --accent:#18c96a;
+      --accent-glow:rgba(24,201,106,0.2);
+      --bg:linear-gradient(135deg,#060f0a 0%,#0b1a10 60%,#091208 100%);
+      --glass:rgba(255,255,255,0.05);
+      --border:rgba(255,255,255,0.09);
+      --txt:#fff;
+      --txt2:rgba(255,255,255,0.6);
+      --card-hover:rgba(255,255,255,0.08);
+    }
+    body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--txt);min-height:100vh;overflow-x:hidden}
+    .orb{position:fixed;border-radius:50%;filter:blur(100px);opacity:0.15;pointer-events:none;z-index:0}
+    .o1{width:480px;height:480px;background:#18c96a;top:-150px;right:-100px;animation:fl 20s infinite ease-in-out}
+    .o2{width:360px;height:360px;background:#0a84ff;bottom:-100px;left:-80px;animation:fl 26s infinite ease-in-out reverse}
+    @keyframes fl{0%,100%{transform:translate(0,0)}50%{transform:translate(50px,-50px)}}
+    .topbar{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;background:rgba(6,15,10,0.75);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+    .back-btn{display:inline-flex;align-items:center;gap:0.5rem;color:var(--txt2);text-decoration:none;font-size:0.88rem;font-weight:500;transition:color 0.2s}
+    .back-btn:hover{color:var(--txt)}
+    .page-label{font-size:0.78rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);font-weight:600}
+    .hero{padding:7rem 2rem 4rem;max-width:1100px;margin:0 auto;position:relative;z-index:1}
+    .eyebrow{font-size:0.78rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:1rem;display:flex;align-items:center;gap:0.6rem}
+    .eyebrow::before{content:'';width:28px;height:2px;background:var(--accent);border-radius:2px}
+    h1{font-size:clamp(2.2rem,5vw,4.2rem);font-weight:700;line-height:1.1;margin-bottom:1rem;animation:fadeUp 0.6s ease 0.1s both}
+    .hero-sub{font-size:1.05rem;color:var(--txt2);line-height:1.7;max-width:620px;animation:fadeUp 0.6s ease 0.25s both}
+    .tags-row{display:flex;flex-wrap:wrap;gap:0.6rem;margin-top:1.5rem;animation:fadeUp 0.6s ease 0.35s both}
+    .tag{padding:0.35rem 0.9rem;background:rgba(24,201,106,0.1);border:1px solid rgba(24,201,106,0.28);border-radius:100px;font-size:0.78rem;font-weight:500;color:var(--accent)}
+    .content{max-width:1100px;margin:0 auto;padding:2rem 2rem 6rem;position:relative;z-index:1}
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:1.75rem;margin-bottom:2rem}
+    @media(max-width:768px){.two-col{grid-template-columns:1fr}}
+    .three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:2rem}
+    @media(max-width:768px){.three-col{grid-template-columns:1fr}}
+    .card{background:var(--glass);backdrop-filter:blur(20px);border:1px solid var(--border);border-radius:18px;padding:1.75rem;transition:transform 0.3s,background 0.3s;position:relative;overflow:hidden}
+    .card::before{content:'';position:absolute;inset:0 0 auto 0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.12),transparent)}
+    .card:hover{background:var(--card-hover);transform:translateY(-4px)}
+    .card-label{font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:0.75rem}
+    .card-title{font-size:1.15rem;font-weight:600;color:var(--txt);margin-bottom:0.5rem}
+    .card-body{color:var(--txt2);line-height:1.8;font-size:0.92rem}
+    .card-body ul{padding-left:1.2rem;margin-top:0.5rem}
+    .card-body li{margin-bottom:0.55rem}
+    .stat-big{font-size:2.6rem;font-weight:700;color:var(--accent);line-height:1}
+    .stat-desc{font-size:0.85rem;color:var(--txt2);margin-top:0.35rem}
+    .section-title{font-size:1.75rem;font-weight:700;color:var(--txt);margin-bottom:1.5rem;margin-top:3rem;padding-bottom:0.6rem;border-bottom:1px solid var(--border)}
+    .highlight-card{background:linear-gradient(135deg,rgba(24,201,106,0.1),rgba(24,201,106,0.03));border:1px solid rgba(24,201,106,0.25);border-radius:18px;padding:2rem;margin-bottom:1.75rem}
+    .cta-row{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border)}
+    .btn{display:inline-flex;align-items:center;gap:0.5rem;padding:0.8rem 1.8rem;border-radius:100px;font-weight:600;font-size:0.9rem;font-family:'Outfit',sans-serif;text-decoration:none;transition:all 0.25s ease;border:none;cursor:pointer}
+    .btn-acc{background:var(--accent);color:#000;box-shadow:0 6px 20px var(--accent-glow)}
+    .btn-acc:hover{transform:translateY(-2px);box-shadow:0 12px 28px var(--accent-glow)}
+    .btn-ghost{background:var(--glass);color:var(--txt);border:1px solid var(--border)}
+    .btn-ghost:hover{background:var(--card-hover);transform:translateY(-2px)}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+    .reveal{opacity:0;transform:translateY(20px);transition:opacity 0.5s ease,transform 0.5s ease}
+    .reveal.vis{opacity:1;transform:translateY(0)}
+    /* Quote pull */
+    .pull-quote{border-left:3px solid var(--accent);padding:1rem 1.5rem;margin:1.5rem 0;color:var(--txt2);font-size:1rem;line-height:1.7;font-style:italic}
+  </style>
+</head>
+<body>
+  <div class="orb o1"></div>
+  <div class="orb o2"></div>
+
+  <div class="topbar">
+    <a href="index.html" class="back-btn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+      Back to Portfolio
+    </a>
+    <span class="page-label">MSU Vet Med</span>
+  </div>
+
+  <div class="hero">
+    <p class="eyebrow">Marketing Internship · May – Aug 2025</p>
+    <h1>MSU Veterinary<br>Medicine</h1>
+    <p class="hero-sub">Marketing & Communications Intern at one of the nation's top veterinary programs — building content strategy, earning MSU News features, and driving measurable social engagement for a 1,500+ person community.</p>
+    <div class="tags-row">
+      <span class="tag">Content Strategy</span>
+      <span class="tag">Blog Writing</span>
+      <span class="tag">SEO</span>
+      <span class="tag">Social Media</span>
+      <span class="tag">Internal Communications</span>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <h2 class="section-title reveal">Impact at a Glance</h2>
+    <div class="three-col">
+      <div class="card reveal" style="text-align:center">
+        <div class="stat-big">4+</div>
+        <div class="stat-desc">Feature blogs published</div>
+      </div>
+      <div class="card reveal" style="text-align:center">
+        <div class="stat-big">60K+</div>
+        <div class="stat-desc">MSU News audience reached</div>
+      </div>
+      <div class="card reveal" style="text-align:center">
+        <div class="stat-big">2K+</div>
+        <div class="stat-desc">Social likes &amp; 300+ shares</div>
+      </div>
+    </div>
+
+    <h2 class="section-title reveal">The Work</h2>
+    <div class="highlight-card reveal">
+      <p class="card-label">MSU News Features</p>
+      <p class="card-title">Two articles published to a 60,000+ subscriber platform</p>
+      <p class="card-body">Of the four feature blogs I authored during the internship, two were selected by MSU News editors for publication on their platform — putting the Vet Med program in front of a university-wide audience and driving measurable referral traffic back to the program's site.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card reveal">
+        <p class="card-label">Internal Communication Strategy</p>
+        <p class="card-body">Proposed and developed a comprehensive internal communication strategy to streamline information flow across the program's 1,500+ students, faculty, and staff — addressing fragmentation and improving community cohesion.</p>
+      </div>
+      <div class="card reveal">
+        <p class="card-label">SEO Audit</p>
+        <p class="card-body">Conducted a full SEO audit of the program's digital presence, identifying keyword gaps and on-page improvements to strengthen visibility for prospective students and referring veterinarians searching for specialty care.</p>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div class="card reveal">
+        <p class="card-label">Social Media Campaigns</p>
+        <p class="card-body">Created and executed social campaigns across platforms generating 2,000+ likes and 300+ shares — building awareness for the program's clinical services, research, and community events.</p>
+      </div>
+      <div class="card reveal">
+        <p class="card-label">Content Range</p>
+        <p class="card-body">Worked across multiple content formats — long-form editorial blogs, social copy, graphic design, and video concepts — giving me a full-stack view of the program's communications ecosystem.</p>
+      </div>
+    </div>
+
+    <div class="pull-quote reveal">
+      "Building content for a world-class research institution taught me how to translate complex, technical information into stories that feel genuinely compelling — without dumbing anything down."
+    </div>
+
+    <h2 class="section-title reveal">Skills Developed</h2>
+    <div class="three-col">
+      <div class="card reveal">
+        <p class="card-label">Writing</p>
+        <p class="card-body">Long-form editorial writing for a highly educated, professional audience — distilling complex veterinary research into accessible, engaging feature pieces.</p>
+      </div>
+      <div class="card reveal">
+        <p class="card-label">Digital Strategy</p>
+        <p class="card-body">End-to-end campaign planning from content brief through publication — including SEO research, social scheduling, and performance analysis.</p>
+      </div>
+      <div class="card reveal">
+        <p class="card-label">Stakeholder Work</p>
+        <p class="card-body">Collaborated directly with faculty, clinicians, and communications leadership to ensure all content was accurate, on-brand, and timely.</p>
+      </div>
+    </div>
+
+    <div class="cta-row reveal">
+      <a href="index.html" class="btn btn-ghost">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        Back to Portfolio
+      </a>
+      <a href="mailto:calebmlake16@gmail.com?subject=Inquiry about MSU Vet Med work" class="btn btn-acc">Get In Touch</a>
+    </div>
+  </div>
+
+  <script>
+    const ro=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('vis');ro.unobserve(x.target)}})},{threshold:0.1});
+    document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+  </script>
+</body>
+</html>
